@@ -1,6 +1,7 @@
 # all the imports
 import os
 import sqlite3
+
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
 app = Flask(__name__)  # create the application instance :)
@@ -52,6 +53,11 @@ def show_entries():
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
     return render_template('show_entries.html', entries=entries)
+
+
+@app.route('/somepage')
+def somepage():
+    return "Welcome to my page."
 
 
 @app.route('/add', methods=['POST'])
